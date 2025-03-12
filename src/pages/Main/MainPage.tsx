@@ -6,7 +6,7 @@ type MainProps = {
 }
 
 export const Main: FC<MainProps> = ({ offerCount }) => {
-  const places = [1, 2, 3, 4];
+  const places = [{id: 1}, {id: 2}, {id: 3}, {id: 4}];
 
   return (
     <div className="page page--gray page--main">
@@ -98,7 +98,7 @@ export const Main: FC<MainProps> = ({ offerCount }) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {places.map((place) => <PlaceCard key={place} />)}
+                {places.map((place) => <PlaceCard key={place.id} />)}
               </div>
             </section>
             <div className="cities__right-section">
