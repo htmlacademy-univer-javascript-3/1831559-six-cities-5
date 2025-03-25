@@ -18,10 +18,10 @@ type AppProps = {
 export const App: FC<AppProps> = ({offerCount, offers}) => (
   <Router>
     <Routes>
-      <Route path={AppRoutes.Main} element={<Main offerCount={offerCount} offers={offers} authStatus={AuthStatus.NoAuth}/>} />
-      <Route path={AppRoutes.Favorites} element={<PrivateRoute authStatus={AuthStatus.NoAuth}><Favorites offers={offers.filter((offer) => offer.isFavorite)}/></PrivateRoute>} />
+      <Route path={AppRoutes.Main} element={<Main offerCount={offerCount} offers={offers} authStatus={AuthStatus.Auth}/>} />
+      <Route path={AppRoutes.Favorites} element={<PrivateRoute authStatus={AuthStatus.Auth}><Favorites offers={offers.filter((offer) => offer.isFavorite)}/></PrivateRoute>} />
       <Route path={AppRoutes.Login} element={<Login />} />
-      <Route path={AppRoutes.Offer} element={<Offer />} />
+      <Route path={AppRoutes.Offer} element={<Offer authStatus={AuthStatus.Auth}/>} />
       <Route path='*' element={<EmptyPage />} />
     </Routes>
   </Router>
