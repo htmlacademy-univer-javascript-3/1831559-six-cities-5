@@ -5,6 +5,7 @@ import { CardPrefix } from '../../const';
 import { AuthStatus } from '../../authStatus';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppRoutes, getOfferRoute } from '../../routes';
+import { capitalize } from '../../utils';
 
 type PlaceCardProps = {
   offerData: OfferType;
@@ -58,7 +59,7 @@ export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouse
             {offerData.title}
           </h2>
         </Link>
-        <p className="place-card__type">{offerData.type}</p>
+        <p className="place-card__type">{capitalize(offerData.type)}</p>
       </div>
     </article>
   );
