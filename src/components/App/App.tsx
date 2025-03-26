@@ -11,14 +11,13 @@ import { AuthStatus } from '../../authStatus';
 import type { OfferType } from '../../mocks/offers';
 
 type AppProps = {
-  offerCount: number;
   offers: OfferType[];
 }
 
-export const App: FC<AppProps> = ({offerCount, offers}) => (
+export const App: FC<AppProps> = ({offers}) => (
   <Router>
     <Routes>
-      <Route path={AppRoutes.Main} element={<Main offerCount={offerCount} offers={offers} authStatus={AuthStatus.Auth}/>} />
+      <Route path={AppRoutes.Main} element={<Main offers={offers} authStatus={AuthStatus.Auth}/>} />
       <Route path={AppRoutes.Favorites} element={<PrivateRoute authStatus={AuthStatus.Auth}><Favorites offers={offers.filter((offer) => offer.isFavorite)}/></PrivateRoute>} />
       <Route path={AppRoutes.Login} element={<Login />} />
       <Route path={AppRoutes.Offer} element={<Offer authStatus={AuthStatus.Auth}/>} />
