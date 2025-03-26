@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { OfferType } from '../../mocks/offers';
+import { OfferType } from '../../types';
 import { OfferList } from '../../components/OfferList/OfferList';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../routes';

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { OfferType } from '../../mocks/offers';
+import type { OfferType } from '../../types';
 import { Rating } from '../Rating/Rating';
 import { CardPrefix } from '../../const';
 import { AuthStatus } from '../../authStatus';

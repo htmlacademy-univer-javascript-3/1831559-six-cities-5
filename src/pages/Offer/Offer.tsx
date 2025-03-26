@@ -1,11 +1,12 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppRoutes } from '../../routes';
 import { FC, useEffect, useState } from 'react';
-import { getOfferById, OfferType } from '../../mocks/offers';
+import { getOfferById } from '../../mocks/offers';
 import { Rating } from '../../components/Rating/Rating';
 import { capitalize } from '../../utils';
 import { ReviewForm } from '../../components/ReviewForm/ReviewForm';
 import { AuthStatus } from '../../authStatus';
+import type { OfferType } from '../../types';
 
 type OfferProps = {
   authStatus: AuthStatus;

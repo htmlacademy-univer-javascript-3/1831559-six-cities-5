@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { OfferType } from '../../mocks/offers';
+import type { OfferType } from '../../types';
 import { FavotriteItem } from '../../components/FavoriteItem/FavoriteItem';
 
 type FavoritesOffersProps = {

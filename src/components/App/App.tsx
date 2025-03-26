@@ -8,7 +8,7 @@ import { Offer } from '../../pages/Offer/Offer';
 import { EmptyPage } from '../../pages/EmptyPage/EmptyPage';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AuthStatus } from '../../authStatus';
-import type { OfferType } from '../../mocks/offers';
+import type { OfferType } from '../../types';
 
 type AppProps = {
   offers: OfferType[];
