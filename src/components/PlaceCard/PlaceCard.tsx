@@ -32,9 +32,9 @@ export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouse
           <span>Premium</span>
         </div> : null}
       <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={getOfferRoute(offerData.id)}>
           <img className="place-card__image" src={offerData.previewImage} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info ">
         <div className="place-card__price-wrapper">

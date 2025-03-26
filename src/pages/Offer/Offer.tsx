@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { AppRoutes } from '../../routes';
+import { AppRoutes, getOfferRoute } from '../../routes';
 import { FC, useEffect, useState } from 'react';
 import { getOfferById } from '../../mocks/offers';
 import { Rating } from '../../components/Rating/Rating';
@@ -34,9 +34,9 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link className="header__logo-link" to={AppRoutes.Main}>
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -49,9 +49,9 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
                   </Link>
                 </li>
                 <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
+                  <Link className="header__nav-link" to={AppRoutes.Main}>
                     <span className="header__signout">Sign out</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -212,9 +212,10 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="#">
+                  {/* TODO: add correct id from props*/}
+                  <Link to={getOfferRoute('')}>
                     <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -236,7 +237,8 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Wood and stone place</a>
+                    {/* TODO: add correct id from props*/}
+                    <Link to={getOfferRoute('')}>Wood and stone place</Link>
                   </h2>
                   <p className="place-card__type">Room</p>
                 </div>
@@ -244,9 +246,10 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
 
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="#">
+                  {/* TODO: add correct id from props*/}
+                  <Link to={getOfferRoute('')}>
                     <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -268,7 +271,8 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Canal View Prinsengracht</a>
+                    {/* TODO: add correct id from props*/}
+                    <Link to={getOfferRoute('')}>Canal View Prinsengracht</Link>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -279,9 +283,10 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
                   <span>Premium</span>
                 </div>
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="#">
+                  {/* TODO: add correct id from props*/}
+                  <Link to={getOfferRoute('')}>
                     <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -303,7 +308,8 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Nice, cozy, warm big bed apartment</a>
+                    {/* TODO: add correct id from props*/}
+                    <Link to={getOfferRoute('')}>Nice, cozy, warm big bed apartment</Link>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
