@@ -54,7 +54,7 @@ export const Favorites: FC<FavoritesOffersProps> = ({ offers }) => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {Array.from(groupedOffers.entries()).map(([city, cityOffers]) => (
+              {Array.from(groupedOffers).map(([city, cityOffers]) => (
                 <FavoriteItem key={`favorites-in-${city}`} offers={cityOffers} city={city}/>
               ))}
             </ul>
