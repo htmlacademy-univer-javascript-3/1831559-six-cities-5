@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { OfferType } from '../../mocks/offers';
+import type { OfferType } from '../../types';
 import { PlaceCard } from '../PlaceCard/PlaceCard';
 import { CardPrefix } from '../../const';
 
@@ -8,7 +8,7 @@ type FavoriteItemProps = {
   city: string;
 }
 
-export const FavotriteItem: FC<FavoriteItemProps> = ({ offers, city }) => (
+export const FavoriteItem: FC<FavoriteItemProps> = ({ offers, city }) => (
   <li className="favorites__locations-items">
     <div className="favorites__locations locations locations--current">
       <div className="locations__item">

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import type { OfferType } from '../../types';
-import { FavotriteItem } from '../../components/FavoriteItem/FavoriteItem';
+import { FavoriteItem } from '../../components/FavoriteItem/FavoriteItem';
 
 type FavoritesOffersProps = {
   offers: OfferType[];
@@ -53,7 +53,7 @@ export const Favorites: FC<FavoritesOffersProps> = ({ offers }) => {
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
               {Array.from(groupedOffers.entries()).map(([city, cityOffers]) => (
-                <FavotriteItem key={`favorites-in-${city}`} offers={cityOffers} city={city}/>
+                <FavoriteItem key={`favorites-in-${city}`} offers={cityOffers} city={city}/>
               ))}
             </ul>
           </section>
