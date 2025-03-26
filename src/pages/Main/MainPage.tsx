@@ -53,7 +53,7 @@ export const Main: FC<MainProps> = ({ offers, authStatus }) => {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoutes.Main}>
+                <Link className="locations__item-link tabs__item tabs__item--active" to={AppRoutes.Main}>
                   <span>Paris</span>
                 </Link>
               </li>
@@ -68,7 +68,7 @@ export const Main: FC<MainProps> = ({ offers, authStatus }) => {
                 </Link>
               </li>
               <li className="locations__item">
-                <Link className="locations__item-link tabs__item tabs__item--active" to={AppRoutes.Main}>
+                <Link className="locations__item-link tabs__item" to={AppRoutes.Main}>
                   <span>Amsterdam</span>
                 </Link>
               </li>
@@ -89,7 +89,7 @@ export const Main: FC<MainProps> = ({ offers, authStatus }) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Paris</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
