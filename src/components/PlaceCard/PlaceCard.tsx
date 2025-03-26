@@ -55,7 +55,7 @@ export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouse
         <Rating count={offerData.rating} classPreffix='place-card' />
         <Link to={getOfferRoute(offerData.id)}>
           <h2 className="place-card__name">
-            <a href="#">{offerData.title}</a>
+            {offerData.title}
           </h2>
         </Link>
         <p className="place-card__type">{offerData.type}</p>
