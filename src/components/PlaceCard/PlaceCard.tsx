@@ -14,7 +14,7 @@ type PlaceCardProps = {
   authStatus?: AuthStatus;
 }
 
-export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouseLeave, prefix = 'PLACE', authStatus }) => {
+export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouseLeave, prefix, authStatus }) => {
   const navigate = useNavigate();
 
   const bookmarkClickHandler = () => {
