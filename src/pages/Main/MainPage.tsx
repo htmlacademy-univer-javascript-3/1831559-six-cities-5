@@ -4,6 +4,8 @@ import { OfferList } from '../../components/OfferList/OfferList';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../routes';
 import { AuthStatus } from '../../authStatus';
+import { Map } from '../../components/Map/Map';
+import { CITY } from '../../mocks/city';
 
 type MainProps = {
   offers: OfferType[];
@@ -12,6 +14,7 @@ type MainProps = {
 
 export const Main: FC<MainProps> = ({ offers, authStatus }) => {
   const favoritesCount = offers.filter((offer) => offer.isFavorite).length;
+  const mapPoints = offers.map((offer) => offer.location);
 
   return (
     <div className="page page--gray page--main">
@@ -105,7 +108,7 @@ export const Main: FC<MainProps> = ({ offers, authStatus }) => {
               <OfferList offers={offers} authStatus={authStatus} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map city={CITY} points={mapPoints}/>
             </div>
           </div>
         </div>
