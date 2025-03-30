@@ -1,10 +1,11 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
-import leaflet, { Map } from 'leaflet';
+import leaflet, { Map, Marker } from 'leaflet';
 import { City } from '../types';
 
 export const useMap = (mapRef: MutableRefObject<HTMLElement | null>, city: City) => {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef(false);
+  const markersRef = useRef<Marker[]>([]);
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
@@ -32,5 +33,16 @@ export const useMap = (mapRef: MutableRefObject<HTMLElement | null>, city: City)
 
   }, [mapRef, city]);
 
-  return map;
+  const removeMarkers = () => {
+    markersRef.current.forEach((marker) => {
+      marker.remove();
+    });
+    markersRef.current = [];
+  };
+
+  const addMarker = (marker: Marker) => {
+    markersRef.current.push(marker);
+  };
+
+  return { map, removeMarkers, addMarker };
 };

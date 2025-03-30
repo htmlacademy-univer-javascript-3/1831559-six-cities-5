@@ -18,20 +18,27 @@ const defaultIcon = leaflet.icon({
 
 export const Map: FC<MapProps> = ({ city, points }) => {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const { map, removeMarkers, addMarker } = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
+      removeMarkers();
+
       points.forEach((point) => {
-        leaflet.marker({
-          lat: point.latitude,
-          lng: point.longitude
-        }, {
-          icon: defaultIcon
-        }).addTo(map);
+        const marker = leaflet.marker(
+          {
+            lat: point.latitude,
+            lng: point.longitude,
+          },
+          {
+            icon: defaultIcon,
+          }
+        ).addTo(map);
+
+        addMarker(marker);
       });
     }
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [points, map]);
 
   return (
