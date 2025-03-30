@@ -1,3 +1,3 @@
-export const DEFAULT_ICON = '/public/img/pin.svg';
+export const DEFAULT_ICON = '/img/pin.svg';
 
-export const ACTIVE_ICON = '/public/img/pin-active.svg';
+export const ACTIVE_ICON = '/img/pin-active.svg';
