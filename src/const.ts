@@ -1,9 +1,9 @@
 import { RatingValue } from './types';
 
-export enum CardPrefix {
-  MAIN = 'cities',
+export enum Pages {
+  MAIN = 'main',
   FAVORITES = 'favorites',
-  NEARBY = 'near-places'
+  OFFER = 'offer'
 }
 
 export const RATING_VALUES: RatingValue[] = [5, 4, 3, 2, 1];

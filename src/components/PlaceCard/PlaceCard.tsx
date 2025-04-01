@@ -1,22 +1,25 @@
 import { FC } from 'react';
 import type { OfferType } from '../../types';
 import { Rating } from '../Rating/Rating';
-import { CardPrefix } from '../../const';
+import { Pages } from '../../const';
 import { AuthStatus } from '../../authStatus';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppRoutes, getOfferRoute } from '../../routes';
 import { capitalize } from '../../utils';
+import { CARD_IMAGE_SIZE, CARD_PREFIX } from './PlaceCard.const';
 
 type PlaceCardProps = {
   offerData: OfferType;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
-  prefix: CardPrefix;
+  page: Pages;
   authStatus?: AuthStatus;
 }
 
-export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouseLeave, prefix, authStatus }) => {
+export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouseLeave, page, authStatus }) => {
   const navigate = useNavigate();
+  const imageSize = CARD_IMAGE_SIZE[page];
+  const prefix = CARD_PREFIX[page];
 
   const bookmarkClickHandler = () => {
     // Пока обрабатывается только один сценарий
@@ -32,8 +35,14 @@ export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouse
           <span>Premium</span>
         </div> : null}
       <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
-        <Link to={getOfferRoute(offerData.id)}>
-          <img className="place-card__image" src={offerData.previewImage} width="260" height="200" alt="Place image" />
+        <Link to={getOfferRoute(offerData.id)} target='_blank'>
+          <img
+            className="place-card__image"
+            src={offerData.previewImage}
+            width={imageSize.width}
+            height={imageSize.height}
+            alt="Place image"
+          />
         </Link>
       </div>
       <div className="place-card__info ">
@@ -54,7 +63,7 @@ export const PlaceCard: FC<PlaceCardProps> = ({ offerData, onMouseEnter, onMouse
           </button>
         </div>
         <Rating count={offerData.rating} classPreffix='place-card' />
-        <Link to={getOfferRoute(offerData.id)}>
+        <Link to={getOfferRoute(offerData.id)} target='_blank'>
           <h2 className="place-card__name">
             {offerData.title}
           </h2>
