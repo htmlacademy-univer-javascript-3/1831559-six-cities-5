@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import type { OfferType } from '../../types';
 import { PlaceCard } from '../PlaceCard/PlaceCard';
-import { CardPrefix } from '../../const';
+import { Pages } from '../../const';
 import { Link } from 'react-router-dom';
 
 type FavoriteItemProps = {
@@ -19,7 +19,7 @@ export const FavoriteItem: FC<FavoriteItemProps> = ({ offers, city }) => (
       </div>
     </div>
     <div className="favorites__places">
-      {offers.map((offer) => (<PlaceCard key={offer.id} offerData={offer} prefix={CardPrefix.FAVORITES} />))}
+      {offers.map((offer) => (<PlaceCard key={offer.id} offerData={offer} page={Pages.FAVORITES} />))}
     </div>
   </li>
 );

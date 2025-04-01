@@ -108,7 +108,7 @@ export const Main: FC<MainProps> = ({ offers, authStatus }) => {
               <OfferList offers={offers} authStatus={authStatus} />
             </section>
             <div className="cities__right-section">
-              <Map city={CITY} points={mapPoints}/>
+              <Map city={CITY} points={mapPoints} classPrefix='cities' />
             </div>
           </div>
         </div>

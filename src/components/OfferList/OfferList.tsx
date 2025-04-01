@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import type { OfferType } from '../../types';
 import { PlaceCard } from '../PlaceCard/PlaceCard';
-import { CardPrefix } from '../../const';
+import { Pages } from '../../const';
 import { AuthStatus } from '../../authStatus';
 
 type OffersTypeProps = {
@@ -20,7 +20,7 @@ export const OfferList: FC<OffersTypeProps> = ({ offers, authStatus }) => {
           offerData={offer}
           onMouseEnter={() => setActiveOffer(offer.id)}
           onMouseLeave={() => setActiveOffer(null)}
-          prefix={CardPrefix.MAIN}
+          page={Pages.MAIN}
           authStatus={authStatus}
         />))}
     </div>
