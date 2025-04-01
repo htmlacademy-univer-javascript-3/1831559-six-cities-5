@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { AppRoutes, getOfferRoute } from '../../routes';
+import { AppRoutes } from '../../routes';
 import { FC, useEffect, useState } from 'react';
 import { getOfferById, OFFERS } from '../../mocks/offers';
 import { Rating } from '../../components/Rating/Rating';
@@ -10,6 +10,7 @@ import type { Review, OfferType } from '../../types';
 import { ReviewList } from '../../components/ReviewList/ReviewList';
 import { REVIEWS } from '../../mocks/review';
 import { Map } from '../../components/Map/Map';
+import { PlacesNearby } from '../../components/PlacesNearby/PlacesNearby';
 
 type OfferProps = {
   authStatus: AuthStatus;
@@ -191,115 +192,7 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
           { offerData && <Map classPrefix='offer' points={offersNearby.map((offer) => offer.location)} city={offerData?.city} />}
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              <article className="near-places__card place-card">
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  {/* TODO: add correct id from props*/}
-                  <Link to={getOfferRoute('')}>
-                    <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
-                  </Link>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;80</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">In bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '80%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    {/* TODO: add correct id from props*/}
-                    <Link to={getOfferRoute('')}>Wood and stone place</Link>
-                  </h2>
-                  <p className="place-card__type">Room</p>
-                </div>
-              </article>
-
-              <article className="near-places__card place-card">
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  {/* TODO: add correct id from props*/}
-                  <Link to={getOfferRoute('')}>
-                    <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image" />
-                  </Link>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;132</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">To bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '80%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    {/* TODO: add correct id from props*/}
-                    <Link to={getOfferRoute('')}>Canal View Prinsengracht</Link>
-                  </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
-              </article>
-
-              <article className="near-places__card place-card">
-                <div className="place-card__mark">
-                  <span>Premium</span>
-                </div>
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  {/* TODO: add correct id from props*/}
-                  <Link to={getOfferRoute('')}>
-                    <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
-                  </Link>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;180</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                    <button className="place-card__bookmark-button button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">To bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '100%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    {/* TODO: add correct id from props*/}
-                    <Link to={getOfferRoute('')}>Nice, cozy, warm big bed apartment</Link>
-                  </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
-              </article>
-            </div>
-          </section>
+          <PlacesNearby offersNearby={offersNearby} />
         </div>
       </main>
     </div>
