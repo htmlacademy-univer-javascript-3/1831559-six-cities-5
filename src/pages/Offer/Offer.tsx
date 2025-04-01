@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppRoutes, getOfferRoute } from '../../routes';
 import { FC, useEffect, useState } from 'react';
-import { getOfferById } from '../../mocks/offers';
+import { getOfferById, OFFERS } from '../../mocks/offers';
 import { Rating } from '../../components/Rating/Rating';
 import { capitalize } from '../../utils';
 import { ReviewForm } from '../../components/ReviewForm/ReviewForm';
@@ -9,6 +9,7 @@ import { AuthStatus } from '../../authStatus';
 import type { Review, OfferType } from '../../types';
 import { ReviewList } from '../../components/ReviewList/ReviewList';
 import { REVIEWS } from '../../mocks/review';
+import { Map } from '../../components/Map/Map';
 
 type OfferProps = {
   authStatus: AuthStatus;
@@ -20,11 +21,13 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
 
   const [offerData, setOfferData] = useState<OfferType | null>(null);
   const [reviews, setReviews] = useState<Review[] | null>(null);
+  const [offersNearby, setoOffersNearby] = useState<OfferType[] | []>([]);
 
   useEffect(() => {
     if (id) {
       setOfferData(getOfferById(id));
       setReviews(REVIEWS);
+      setoOffersNearby(OFFERS.filter((offer) => offer.id !== id));
     }
   }, [id]);
 
@@ -185,7 +188,7 @@ export const Offer: FC<OfferProps> = ({ authStatus }) => {
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          { offerData && <Map classPrefix='offer' points={offersNearby.map((offer) => offer.location)} city={offerData?.city} />}
         </section>
         <div className="container">
           <section className="near-places places">

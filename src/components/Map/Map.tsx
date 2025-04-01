@@ -8,6 +8,7 @@ import { DEFAULT_ICON } from './Map.const';
 type MapProps = {
   city: City;
   points: Location[];
+  classPrefix: string;
 }
 
 const defaultIcon = leaflet.icon({
@@ -16,7 +17,7 @@ const defaultIcon = leaflet.icon({
   iconAnchor: [27, 39],
 });
 
-export const Map: FC<MapProps> = ({ city, points }) => {
+export const Map: FC<MapProps> = ({ city, points, classPrefix }) => {
   const mapRef = useRef(null);
   const { map } = useMap(mapRef, city);
   const markersRef = useRef<leaflet.Marker[]>([]);
@@ -49,7 +50,7 @@ export const Map: FC<MapProps> = ({ city, points }) => {
 
   return (
     <section
-      className="cities__map map"
+      className={`${classPrefix}__map map`}
       ref={mapRef}
     >
     </section>
