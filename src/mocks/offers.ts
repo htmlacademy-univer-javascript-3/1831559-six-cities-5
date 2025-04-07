@@ -92,6 +92,29 @@ export const OFFERS: OfferType[] = [
     'isFavorite': false,
     'isPremium': false,
     'rating': 2.4
+  },
+  {
+    'id': 'dcca20e0-bc40-481d-a6b6-b322e5096ea5',
+    'title': 'House in countryside',
+    'type': 'apartment',
+    'price': 197,
+    'previewImage': 'https://14.design.htmlacademy.pro/static/hotel/19.jpg',
+    'city': {
+      'name': 'Dusseldorf',
+      'location': {
+        'latitude': 51.225402,
+        'longitude': 6.776314,
+        'zoom': 13
+      }
+    },
+    'location': {
+      'latitude': 51.211402,
+      'longitude': 6.756314000000001,
+      'zoom': 16
+    },
+    'isFavorite': false,
+    'isPremium': false,
+    'rating': 2.6
   }
 ];
 
