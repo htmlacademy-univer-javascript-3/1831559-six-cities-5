@@ -9,10 +9,10 @@ import { EmptyPage } from '../../pages/EmptyPage/EmptyPage';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AuthStatus } from '../../authStatus';
 import { useSelector } from 'react-redux';
-import { store } from '../../store';
+import type { State } from '../../store/types';
 
 export const App: FC = () => {
-  const offers = useSelector((state: ReturnType<typeof store.getState>) => state.offers);
+  const offers = useSelector((state: State) => state.offers);
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
 
   return (

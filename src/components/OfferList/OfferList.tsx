@@ -4,7 +4,7 @@ import { PlaceCard } from '../PlaceCard/PlaceCard';
 import { CardPrefix } from '../../const';
 import { AuthStatus } from '../../authStatus';
 import { useSelector } from 'react-redux';
-import { store } from '../../store';
+import type { State } from '../../store/types';
 
 type OffersTypeProps = {
   authStatus: AuthStatus;
@@ -12,8 +12,8 @@ type OffersTypeProps = {
 
 export const OfferList: FC<OffersTypeProps> = ({ authStatus }) => {
   const [, setActiveOffer] = useState<string | null>(null);
-  const city = useSelector((state: ReturnType<typeof store.getState>) => state.city);
-  const offers = useSelector((state: ReturnType<typeof store.getState>) =>
+  const city = useSelector((state: State) => state.city);
+  const offers = useSelector((state: State) =>
     state.offers.filter((offer: OfferType) => offer.city.name === city)
   );
 

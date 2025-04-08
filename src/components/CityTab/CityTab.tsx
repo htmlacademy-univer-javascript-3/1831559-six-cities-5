@@ -4,17 +4,17 @@ import { CITIES } from '../../const';
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCity } from '../../store/action';
-import { store } from '../../store';
+import type { Dispatch, State } from '../../store/types';
 
 type CityTabProps = {
   city: typeof CITIES[number];
 }
 
 export const CityTab: FC<CityTabProps> = ({ city }) => {
-  const activeTab = useSelector((state: ReturnType<typeof store.getState>) => state.city);
+  const activeTab = useSelector((state: State) => state.city);
   const isActive = activeTab === city;
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<Dispatch>();
 
   const handleCityChange = () => {
     dispatch(changeCity(city));
