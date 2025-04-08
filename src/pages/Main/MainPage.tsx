@@ -1,5 +1,4 @@
 import { FC, useEffect } from 'react';
-import { OfferType } from '../../types';
 import { OfferList } from '../../components/OfferList/OfferList';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../routes';
@@ -24,12 +23,11 @@ export const Main: FC<MainProps> = ({ authStatus }) => {
   }, [dispatch]);
 
   const city = useSelector((state: State) => state.city);
-  const offers = useSelector((state: State) =>
-    state.offers.filter((offer: OfferType) => offer.city.name === city)
-  );
+  const allOffers = useSelector((state: State) => state.offers);
 
-  const favoritesCount = useSelector((state: State) => state.offers.filter((offer: OfferType) => offer.isFavorite)).length;
-  const mapPoints = offers.map((offer) => offer.location);
+  const offersInCity = allOffers.filter((offer) => offer.city.name === city);
+  const favoritesCount = allOffers.filter((offer) => offer.isFavorite).length;
+  const mapPoints = offersInCity.map((offer) => offer.location);
 
   return (
     <div className="page page--gray page--main">
@@ -62,15 +60,15 @@ export const Main: FC<MainProps> = ({ authStatus }) => {
         </div>
       </header>
 
-      <main className={`page__main page__main--index ${offers.length === 0 ? 'page__main--index-empty' : ''}`}>
+      <main className={`page__main page__main--index ${offersInCity.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <CitiesTabs />
         <div className="cities">
-          {offers.length > 0 ? (
+          {offersInCity.length > 0 ? (
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} {offers.length === 1 ? 'place' : 'places'} to stay in {city}</b>
+                <b className="places__found">{offersInCity.length} {offersInCity.length === 1 ? 'place' : 'places'} to stay in {offersInCity[0].city.name}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -89,11 +87,11 @@ export const Main: FC<MainProps> = ({ authStatus }) => {
                 <OfferList authStatus={authStatus} />
               </section>
               <div className="cities__right-section">
-                <Map city={CITIES_COORDS[city]} points={mapPoints}/>
+                <Map city={CITIES_COORDS[offersInCity[0].city.name]} points={mapPoints}/>
               </div>
             </div>
           ) : (
-            <NoPlaces city={city} />
+            <NoPlaces city={offersInCity[0]?.city.name} />
           )}
         </div>
       </main>
