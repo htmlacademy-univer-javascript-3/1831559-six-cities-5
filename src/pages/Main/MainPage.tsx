@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { OfferType } from '../../types';
 import { OfferList } from '../../components/OfferList/OfferList';
 import { Link } from 'react-router-dom';
@@ -7,21 +7,28 @@ import { AuthStatus } from '../../authStatus';
 import { Map } from '../../components/Map/Map';
 import { CITIES_COORDS } from '../../const';
 import { CitiesTabs } from '../../components/CitiesTabs/CitiesTabs';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NoPlaces } from '../../components/NoPlaces/NoPlaces';
-import { State } from '../../store/types';
+import { State, Dispatch } from '../../store/types';
+import { OFFERS } from '../../mocks/offers';
+import { setOffers } from '../../store/action';
 
 type MainProps = {
   authStatus: AuthStatus;
 }
 
 export const Main: FC<MainProps> = ({ authStatus }) => {
+  const dispatch = useDispatch<Dispatch>();
+  useEffect(() => {
+    dispatch(setOffers(OFFERS));
+  }, [dispatch]);
+
   const city = useSelector((state: State) => state.city);
   const offers = useSelector((state: State) =>
     state.offers.filter((offer: OfferType) => offer.city.name === city)
   );
 
-  const favoritesCount = offers.filter((offer) => offer.isFavorite).length;
+  const favoritesCount = useSelector((state: State) => state.offers.filter((offer: OfferType) => offer.isFavorite)).length;
   const mapPoints = offers.map((offer) => offer.location);
 
   return (
