@@ -28,9 +28,16 @@ export const useMap = (mapRef: MutableRefObject<HTMLElement | null>, city: City)
 
       setMap(mapInstance);
       isRenderedRef.current = true;
+    } else if (map) {
+      map.setView(
+        {
+          lat: city.location.latitude,
+          lng: city.location.longitude,
+        },
+        city.location.zoom
+      );
     }
-
-  }, [mapRef, city]);
+  }, [mapRef, map, city]);
 
   return { map };
 };

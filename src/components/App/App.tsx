@@ -8,20 +8,22 @@ import { Offer } from '../../pages/Offer/Offer';
 import { EmptyPage } from '../../pages/EmptyPage/EmptyPage';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AuthStatus } from '../../authStatus';
-import type { OfferType } from '../../types';
+import { useSelector } from 'react-redux';
+import type { State } from '../../store/types';
 
-type AppProps = {
-  offers: OfferType[];
-}
+export const App: FC = () => {
+  const offers = useSelector((state: State) => state.offers);
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
 
-export const App: FC<AppProps> = ({offers}) => (
-  <Router>
-    <Routes>
-      <Route path={AppRoutes.Main} element={<Main offers={offers} authStatus={AuthStatus.Auth}/>} />
-      <Route path={AppRoutes.Favorites} element={<PrivateRoute authStatus={AuthStatus.Auth}><Favorites offers={offers.filter((offer) => offer.isFavorite)}/></PrivateRoute>} />
-      <Route path={AppRoutes.Login} element={<Login />} />
-      <Route path={AppRoutes.Offer} element={<Offer authStatus={AuthStatus.Auth}/>} />
-      <Route path='*' element={<EmptyPage />} />
-    </Routes>
-  </Router>
-);
+  return (
+    <Router>
+      <Routes>
+        <Route path={AppRoutes.Main} element={<Main authStatus={AuthStatus.Auth}/>} />
+        <Route path={AppRoutes.Favorites} element={<PrivateRoute authStatus={AuthStatus.Auth}><Favorites offers={favoriteOffers}/></PrivateRoute>} />
+        <Route path={AppRoutes.Login} element={<Login />} />
+        <Route path={AppRoutes.Offer} element={<Offer authStatus={AuthStatus.Auth}/>} />
+        <Route path='*' element={<EmptyPage />} />
+      </Routes>
+    </Router>
+  );
+};
