@@ -6,6 +6,7 @@ import { AuthStatus } from '../../authStatus';
 import { useSelector } from 'react-redux';
 import type { State } from '../../store/types';
 import { useSort } from '../../hooks/useSort';
+import { Spinner } from '../Spinner/Spinner';
 
 type OffersTypeProps = {
   authStatus: AuthStatus;
@@ -32,6 +33,12 @@ export const OfferList: FC<OffersTypeProps> = ({ authStatus, onOfferHover }) => 
         return offersCopy;
     }
   }, [offers, sortType]);
+
+  const isOffersLoading = useSelector((state: State) => state.isOffersLoading);
+
+  if (isOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="cities__places-list places__list tabs__content">
