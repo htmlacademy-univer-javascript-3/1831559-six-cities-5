@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { OfferList } from '../../components/OfferList/OfferList';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../routes';
@@ -29,7 +29,8 @@ export const Main: FC<MainProps> = ({ authStatus }) => {
 
   const offersInCity = allOffers.filter((offer) => offer.city.name === city);
   const favoritesCount = allOffers.filter((offer) => offer.isFavorite).length;
-  const mapPoints = offersInCity.map((offer) => offer.location);
+
+  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
 
   return (
     <div className="page page--gray page--main">
@@ -77,7 +78,7 @@ export const Main: FC<MainProps> = ({ authStatus }) => {
                 </SortProvider>
               </section>
               <div className="cities__right-section">
-                <Map city={CITIES_COORDS[offersInCity[0].city.name]} points={mapPoints}/>
+                <Map city={CITIES_COORDS[offersInCity[0].city.name]} offers={offersInCity} activePointId={activeOfferId} />
               </div>
             </div>
           ) : (

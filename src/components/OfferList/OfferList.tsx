@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useMemo } from 'react';
 import type { OfferType } from '../../types';
 import { PlaceCard } from '../PlaceCard/PlaceCard';
 import { CardPrefix } from '../../const';
@@ -9,10 +9,10 @@ import { useSort } from '../../hooks/useSort';
 
 type OffersTypeProps = {
   authStatus: AuthStatus;
+  onOfferHover: (id: string | null) => void;
 }
 
-export const OfferList: FC<OffersTypeProps> = ({ authStatus }) => {
-  const [, setActiveOffer] = useState<string | null>(null);
+export const OfferList: FC<OffersTypeProps> = ({ authStatus, onOfferHover }) => {
   const city = useSelector((state: State) => state.city);
   const offers = useSelector((state: State) =>
     state.offers.filter((offer: OfferType) => offer.city.name === city)
@@ -39,8 +39,8 @@ export const OfferList: FC<OffersTypeProps> = ({ authStatus }) => {
         <PlaceCard
           key={offer.id}
           offerData={offer}
-          onMouseEnter={() => setActiveOffer(offer.id)}
-          onMouseLeave={() => setActiveOffer(null)}
+          onMouseEnter={() => onOfferHover(offer.id)}
+          onMouseLeave={() => onOfferHover(null)}
           prefix={CardPrefix.MAIN}
           authStatus={authStatus}
         />))}
