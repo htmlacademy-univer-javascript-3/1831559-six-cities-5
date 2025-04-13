@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Main } from '../../pages/Main/MainPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AppRoutes } from '../../routes';
@@ -8,12 +8,18 @@ import { Offer } from '../../pages/Offer/Offer';
 import { EmptyPage } from '../../pages/EmptyPage/EmptyPage';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { AuthStatus } from '../../authStatus';
-import { useSelector } from 'react-redux';
-import type { State } from '../../store/types';
+import type { Dispatch, State } from '../../store/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOffersAction } from '../../store/api-actions';
 
 export const App: FC = () => {
   const offers = useSelector((state: State) => state.offers);
   const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+
+  const dispatch = useDispatch<Dispatch>();
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  }, [dispatch]);
 
   return (
     <Router>
